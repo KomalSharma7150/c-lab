@@ -1,3 +1,3 @@
  c++lab
  
-author-Komal Sharma
+Author-Komal Sharma
