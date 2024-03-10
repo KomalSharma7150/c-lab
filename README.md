@@ -1,3 +1,3 @@
-# c-lab
-practical viva 
+# c++-lab
+ 
 author-Komal Sharma
