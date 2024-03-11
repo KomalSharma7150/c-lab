@@ -1,0 +1,39 @@
+#include<iostream>
+
+class BankAccount {
+    private:
+        static int totalTransactions; 
+        int accountNumber;
+
+    public:
+        BankAccount(int accountNumber) : accountNumber(accountNumber) {
+            totalTransactions++;
+        }
+        static int getTotalTransactions() {
+            return totalTransactions;
+        }
+        void deposit(double amount);
+        void withdraw(double amount);
+};
+
+int BankAccount::totalTransactions = 0; e
+
+void BankAccount::deposit(double amount) {
+    totalTransactions++; 
+}
+
+void BankAccount::withdraw(double amount) {
+    totalTransactions++; 
+}
+
+int main() {
+    BankAccount account1(10001);
+    BankAccount account2(10002);
+
+    account1.deposit(1000);
+    account2.withdraw(500);
+
+    std::cout << "Total number of transactions: " << BankAccount::getTotalTransactions() << std::endl;
+
+    return 0;
+}
