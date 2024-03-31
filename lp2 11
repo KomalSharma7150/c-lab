@@ -1,0 +1,60 @@
+// Create a base class Employee with a virtual function calculateSalary(). Different types of employees, such as
+// full-time employees, part-time employees, and managers, have varying salary calculation methods. Explain
+// how you would implement calculateSalary() in derived classes to handle salary calculation differently for
+// each employee type.
+#include <iostream>
+using namespace std;
+
+// Base class
+class Employee {
+public:
+
+    virtual double calculateSalary() const = 0; 
+
+    
+    virtual ~Employee() {}
+};
+
+// Derived class for full-time employees
+class FullTimeEmployee : public Employee {
+public:
+    double calculateSalary() const override {
+        
+        return 5000.0; 
+    }
+};
+
+class PartTimeEmployee : public Employee {
+public:
+    double calculateSalary() const override {
+        
+        double hourlyRate = 20.0; 
+        int hoursWorked = 25;    
+        return hourlyRate * hoursWorked; 
+    }
+};
+
+
+class Manager : public Employee {
+public:
+    double calculateSalary() const override {
+        
+        double fixedSalary = 7000.0; 
+        double bonus = 1000.0;       
+        return fixedSalary + bonus;  
+    }
+};
+
+int main() {
+    // Create instances of each employee type
+    FullTimeEmployee fullTimeEmp;
+    PartTimeEmployee partTimeEmp;
+    Manager manager;
+
+    // Calculate and output salaries for each employee type
+    cout << "Full-time employee salary: $" << fullTimeEmp.calculateSalary() << endl;
+    cout << "Part-time employee salary: $" << partTimeEmp.calculateSalary() << endl;
+    cout << "Manager's salary: $" << manager.calculateSalary() << endl;
+
+    return 0;
+}
