@@ -1,0 +1,87 @@
+#include <iostream>
+using namespace std;
+
+class StringOperation {
+private:
+    char* str;
+    int length;
+
+public:
+    // Constructor to initialize the string
+    StringOperation(const char* input) {
+        length = 0;
+        while (input[length] != '\0') {
+            length++;
+        }
+        str = new char[length + 1];
+        for (int i = 0; i < length; i++) {
+            str[i] = input[i];
+        }
+        str[length] = '\0';
+    }
+
+    // Destructor to deallocate memory
+    ~StringOperation() {
+        delete[] str;
+    }
+
+    // Function to find the length of the string
+    int findLength() const {
+        return length;
+    }
+
+    // Function to find the reverse of the string
+    char* findReverse() const {
+        char* reverseStr = new char[length + 1];
+        for (int i = 0; i < length; i++) {
+            reverseStr[i] = str[length - 1 - i];
+        }
+        reverseStr[length] = '\0';
+        return reverseStr;
+    }
+
+    // Function to find the concatenation of two strings
+    char* concatenate(const char* other) const {
+        int newLength = length;
+        int otherLength = 0;
+        while (other[otherLength] != '\0') {
+            otherLength++;
+        }
+        newLength += otherLength;
+        char* result = new char[newLength + 1];
+        int i;
+        for (i = 0; i < length; i++) {
+            result[i] = str[i];
+        }
+        for (int j = 0; j < otherLength; j++) {
+            result[i++] = other[j];
+        }
+        result[newLength] = '\0';
+        return result;
+    }
+
+    // Function to compare two strings
+    bool compare(const char* other) const {
+        int i = 0;
+        while (str[i] != '\0' && other[i] != '\0') {
+            if (str[i] != other[i]) {
+                return false;
+            }
+            i++;
+        }
+        return (str[i] == '\0' && other[i] == '\0');
+    }
+};
+
+int main() {
+    // Example usage
+    StringOperation str1("Hello");
+    StringOperation str2("World");
+
+    cout << "Length of str1: " << str1.findLength() << endl;
+    cout << "Reverse of str1: " << str1.findReverse() << endl;
+    cout << "Concatenation of str1 and str2: " << str1.concatenate(str2.findReverse()) << endl;
+    cout << "Comparison of str1 and str2: " << (str1.compare(str2.findReverse()) ? "Equal" : "Not equal") << endl;
+
+    return 0;
+}
