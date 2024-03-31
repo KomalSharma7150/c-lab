@@ -1,24 +1,23 @@
-
 #include <iostream>
+using namespace std;
 
 int main() {
-    int num, validCount = 0;
-    bool validInput;
+    int number;
+    int validCount = 0;
 
-    do {
-        std::cout << "Enter a number: ";
-        std::cin >> num;
-        validInput = std::cin && (num % 8 == 0);
+    cout << "Enter a number (Enter 0 to stop):" << endl;
+    cin >> number;
 
-        if (validInput) {
+    while (number != 0) {
+        if (number % 8 == 0) {
             validCount++;
-            std::cout << "Valid number. Total valid numbers: " << validCount << std::endl;
-        } else {
-            std::cout << "Invalid number. Please enter a number divisible by 8." << std::endl;
         }
-    } while (validInput);
 
-    std::cout << "Exiting the program." << std::endl;
+        cout << "Enter a number (Enter 0 to stop):" << endl;
+        cin >> number;
+    }
+
+    cout << "Total " << validCount << " numbers are valid numbers." << endl;
 
     return 0;
 }
